@@ -1,9 +1,9 @@
+import { useState, useEffect } from 'react';
 import { BsArrowUpShort } from 'react-icons/bs';
 
 import ResetCss from "../styles/ResetCss";
 import GlobalStyles from "../styles/GlobalStyles";
 import { ScrollToTop } from "../styles/GlobalStyles";
-import { useState, useEffect } from 'react';
 
 function MyApp({ Component, pageProps }) {
   const [scrollPosition, setScrollPosition] = useState(
@@ -11,16 +11,14 @@ function MyApp({ Component, pageProps }) {
   );
 
   useEffect(() => {
-    const handleScrollPos = () => {
-      //every time the window is scrolled, update the reference. This will not cause a re-render, meaning smooth uninterrupted scrolling.
+    const handleScrollPosition = () => {
       setScrollPosition(window.pageYOffset);
     };
 
-    window.addEventListener('scroll', handleScrollPos);
+    window.addEventListener('scroll', handleScrollPosition);
 
     return () => {
-      //remove event listener on unmount
-      window.removeEventListener('scroll', handleScrollPos);
+      window.removeEventListener('scroll', handleScrollPosition);
     };
   }, []);
 

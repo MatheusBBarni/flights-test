@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { format, parseISO } from 'date-fns';
+import { FaPlaneDeparture, FaPlaneArrival } from 'react-icons/fa';
 
 import { Container, Column, DetailsButton } from './styles';
 import { IFlight } from '../../model/IFlight';
@@ -43,6 +44,7 @@ const FlightCard: React.FC<{ flight: IFlight; onDetails: (flight: IFlight) => vo
         />
       </Column>
       <Column width="22.5%">
+        <FaPlaneDeparture color="var(--text-color)" size="20px" style={{ marginBottom: '15px' }} />
         <p>{flight.originCity}</p>
         <p>{formatDate(flight.departureTime)}</p>
       </Column>
@@ -53,6 +55,7 @@ const FlightCard: React.FC<{ flight: IFlight; onDetails: (flight: IFlight) => vo
         </p>
       </Column>
       <Column width="22.5%">
+        <FaPlaneArrival color="var(--text-color)" size="20px" style={{ marginBottom: '15px' }} />
         <p>{flight.destinationCity}</p>
         <p>{formatDate(flight.arrivalTime)}</p>
       </Column>

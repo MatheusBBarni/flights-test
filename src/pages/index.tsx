@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 
 import { TITLE } from '../config/constants';
 import { Container, Column, FilterWrapper, ClearFilterButton, ClearFilterWrapper, NumberOfStopsWrapper, NumberOfStopsCard, FlightsWrapper, ScrollToTop, NoFlightsFound } from '../styles/pages/HomeStyles';
 import Timer from '../components/Timer';
 import { IFilter } from '../model/IFilter';
-import { GetServerSideProps } from 'next';
 import { HomeProps } from '../model/HomeProps';
 import FlightsService from '../services/FlightsService';
 import { IFlight } from '../model/IFlight';
@@ -13,6 +13,7 @@ import Input from '../components/Input';
 import FlightCard from '../components/FlightCard';
 import { NumberOfStopsTypes } from '../model/type/NumberOfStopsTypes';
 import DetailsModal from '../components/DetailsModal';
+import sanitizeString from '../util/sanitizeString';
 
 export default function Home({ flights }: HomeProps) {
   const [filter, setFilter] = useState<IFilter>({
@@ -50,10 +51,6 @@ export default function Home({ flights }: HomeProps) {
         })
     );
   }, [filter]);
-
-  const sanitizeString = (text: string) => {
-    return text.trim().toLowerCase();
-  };
   
   const changeFilter = (type: NumberOfStopsTypes) => {
     if (type === filter.numberOfStops) {
@@ -126,11 +123,13 @@ export default function Home({ flights }: HomeProps) {
           ))}
         </FlightsWrapper>
       </Column>
-      <DetailsModal
-        show={showDetailsModal} 
-        flight={selectedFlight} 
-        onClose={closeDetailsModal} 
-      />
+      {selectedFlight && (
+        <DetailsModal
+          show={showDetailsModal} 
+          flight={selectedFlight} 
+          onClose={closeDetailsModal} 
+        />
+      )}
     </Container>
   );
 };
