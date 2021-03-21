@@ -3,7 +3,17 @@ import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 
 import { TITLE } from '../config/constants';
-import { Container, Column, FilterWrapper, ClearFilterButton, ClearFilterWrapper, NumberOfStopsWrapper, NumberOfStopsCard, FlightsWrapper, ScrollToTop, NoFlightsFound } from '../styles/pages/HomeStyles';
+import { 
+  Container, 
+  Column, 
+  FilterWrapper, 
+  ClearFilterButton, 
+  ClearFilterWrapper, 
+  NumberOfStopsWrapper, 
+  NumberOfStopsCard, 
+  FlightsWrapper, 
+  NoFlightsFound 
+} from '../styles/pages/HomeStyles';
 import Timer from '../components/Timer';
 import { IFilter } from '../model/IFilter';
 import { HomeProps } from '../model/HomeProps';
@@ -16,7 +26,8 @@ import DetailsModal from '../components/DetailsModal';
 import sanitizeString from '../util/sanitizeString';
 
 export default function Home({ flights }: HomeProps) {
-  const [filter, setFilter] = useState<IFilter>({
+  const [filter, 
+    setFilter] = useState<IFilter>({
     companyName: '',
     numberOfStops: null,
   });
@@ -75,7 +86,7 @@ export default function Home({ flights }: HomeProps) {
     <Container>
       <Head>
         <title>{TITLE}</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;700&display=swap"/>
       </Head>
 

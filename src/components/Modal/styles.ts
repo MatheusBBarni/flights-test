@@ -1,7 +1,13 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+
+export const ModalGlobalStyle = createGlobalStyle`
+  body {
+    overflow: hidden;
+  }
+`;
 
 export const ModalBackground = styled.div<{ show: boolean }>`
-	z-index: auto;
+	z-index: 99;
 	display: ${props => props.show ? 'flex' : 'none'};
   justify-content: center;
   align-items: center;

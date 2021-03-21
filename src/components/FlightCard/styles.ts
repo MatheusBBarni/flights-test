@@ -3,11 +3,11 @@ import { RESPONSIVE } from '../../config/constants';
 
 export const Container = styled.div`
   width: 100%;
-  height: 180px;
+  height: 120px;
   margin-bottom: 15px;
   display: flex;
   background-color: var(--primary-color);
-  border: 1px solid var(--text-color);
+  border: 1px solid var(--secondary-color);
   border-radius: 8px;
   @media (max-width: ${RESPONSIVE}) {
     height: auto;
@@ -17,7 +17,7 @@ export const Container = styled.div`
 
 export const Column = styled.div<{ width?: string }>`
   width: ${props => props.width || '20%'};
-  border-right: 1px solid var(--text-color);
+  border-right: 1px solid var(--secondary-color);
 
   display: flex;
   flex-flow: wrap column;
@@ -31,7 +31,7 @@ export const Column = styled.div<{ width?: string }>`
   p {
     font-size: 16px;
     font-family: var(--font);
-    color: var(--text-color);
+    color: var(--secondary-color);
     text-align: center;
     margin-bottom: 15px;
     &:last-child {
@@ -52,7 +52,7 @@ export const DetailsButton = styled.button`
   font-size: 14px;
   font-family: var(--font);
   color: var(--primary-color);
-  background-color: var(--text-color);
+  background-color: var(--secondary-color);
   border: none;
   border-radius: 8px;
 `;

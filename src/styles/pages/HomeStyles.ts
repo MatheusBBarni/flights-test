@@ -44,7 +44,7 @@ export const ClearFilterButton = styled.button`
   background: none;
   font-size: 14px;
   font-family: var(--font);
-  color: var(--text-color);
+  color: var(--secondary-color);
   margin-bottom: 15px;
 `;
 
@@ -58,7 +58,7 @@ export const NumberOfStopsWrapper = styled.div`
     margin-bottom: 10px;
     font-size: 14px;
     font-family: var(--font);
-    color: var(--text-color);
+    color: var(--secondary-color);
   }
 `;
 export const NumberOfStopsCard = styled.button<{ selected: boolean }>`
@@ -66,14 +66,14 @@ export const NumberOfStopsCard = styled.button<{ selected: boolean }>`
   background: none;
   width: 90px;
   height: 50px;
-  border: 1px solid var(--text-color);
+  border: 1px solid var(--secondary-color);
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 16px;
   font-family: var(--font);
-  color: var(--text-color);
+  color: var(--secondary-color);
   line-height: 15px;
   margin-bottom: 10px;
   &:focus {
@@ -81,7 +81,7 @@ export const NumberOfStopsCard = styled.button<{ selected: boolean }>`
   }
 
   ${props => props.selected && css`
-    background-color: var(--text-color);
+    background-color: var(--secondary-color);
     color: var(--primary-color);
   `};
 `;
@@ -94,5 +94,5 @@ export const NoFlightsFound = styled.p`
   text-align: center;
   font-size: 26px;
   font-family: var(--font);
-  color: var(--text-color);
+  color: var(--secondary-color);
 `;

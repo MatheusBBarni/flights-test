@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { Container, Text, Countdown } from './styles';
 import { TimeTypes } from '../../model/type/TimeTypes';
+import AlertModal from '../AlertModal';
 
 const Timer: React.FC = () => {
   const [timeType, setTimeType] = useState<TimeTypes>('NO');
@@ -10,6 +11,7 @@ const Timer: React.FC = () => {
     seconds: '00',
   });
   const [isFinished, setIsFinished] = useState<boolean>(false);
+  const [showWarningModal, setShowWarningModal] = useState<boolean>(false);
 
   useEffect(() => {
     let intervalId;
@@ -35,8 +37,7 @@ const Timer: React.FC = () => {
         if (realMinute === 0 && realSeconds === 0) {
           clearInterval(intervalId);
           setIsFinished(true);
-          alert('Tempo de busca expirou.');
-          location.reload();
+          setShowWarningModal(true);
         }
         
         setTime({
@@ -58,6 +59,15 @@ const Timer: React.FC = () => {
           {time.minute.length === 1 ? `0${time.minute}` : time.minute}:{time.seconds.length === 1 ? `0${time.seconds}` : time.seconds}
         </p>
       </Countdown>
+      <AlertModal
+        show={showWarningModal}
+        onClose={() => {
+          setShowWarningModal(false);
+          location.reload();
+        }}
+        title="Tempo de busca expirou."
+        type="WARNING"
+      />
     </Container>
   );
 }

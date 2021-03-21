@@ -22,7 +22,7 @@ export const Title = styled.h1`
   font-size: 18px;
   font-weight: bold;
   font-family: var(--font);
-  color: var(--text-color);
+  color: var(--secondary-color);
   text-align: center;
   margin-top: 20px;
   margin-bottom: 35px;
@@ -37,7 +37,7 @@ export const PriceWrapper = styled.div`
 export const Price = styled.div`
   width: 48%;
   font-family: var(--font);
-  color: var(--text-color);
+  color: var(--secondary-color);
   text-align: center;
   margin-bottom: 15px;
   label {
@@ -57,7 +57,7 @@ export const Price = styled.div`
 export const TotalValue = styled.div`
   width: 100%;
   font-family: var(--font);
-  color: var(--text-color);
+  color: var(--secondary-color);
   margin-top: 30px;
   display: flex;
   justify-content: center;
@@ -80,7 +80,7 @@ export const BuyButton = styled.button`
   height: 45px;
   border: none;
   border-radius: 8px;
-  background-color: var(--text-color);
+  background-color: var(--secondary-color);
   font-size: 16px;
   font-family: var(--font);
   color: var(--primary-color);

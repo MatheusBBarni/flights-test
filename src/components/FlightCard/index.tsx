@@ -37,14 +37,14 @@ const FlightCard: React.FC<{ flight: IFlight; onDetails: (flight: IFlight) => vo
     <Container>
       <Column width="15%">
         <Image
-          width="70" 
-          height="70"
+          width="75" 
+          height="75"
           src={getLogo(flight.cia)} 
           alt={flight.cia.name} 
         />
       </Column>
       <Column width="22.5%">
-        <FaPlaneDeparture color="var(--text-color)" size="20px" style={{ marginBottom: '15px' }} />
+        <FaPlaneDeparture color="var(--secondary-color)" size="20px" style={{ marginBottom: '15px' }} />
         <p>{flight.originCity}</p>
         <p>{formatDate(flight.departureTime)}</p>
       </Column>
@@ -55,7 +55,7 @@ const FlightCard: React.FC<{ flight: IFlight; onDetails: (flight: IFlight) => vo
         </p>
       </Column>
       <Column width="22.5%">
-        <FaPlaneArrival color="var(--text-color)" size="20px" style={{ marginBottom: '15px' }} />
+        <FaPlaneArrival color="var(--secondary-color)" size="20px" style={{ marginBottom: '15px' }} />
         <p>{flight.destinationCity}</p>
         <p>{formatDate(flight.arrivalTime)}</p>
       </Column>

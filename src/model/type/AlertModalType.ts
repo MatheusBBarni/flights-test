@@ -1,0 +1,1 @@
+export type AlertModalType = 'SUCCESS' | 'ERROR' | 'WARNING';

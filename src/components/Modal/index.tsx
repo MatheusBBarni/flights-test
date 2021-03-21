@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ModalBackground, ModalContainer } from './styles';
+import { ModalBackground, ModalContainer, ModalGlobalStyle } from './styles';
 
 export interface ModalProps {
   show: boolean;
@@ -9,8 +9,9 @@ export interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ show, children, width, height }) => {
-  return (
+  return show && (
     <ModalBackground show={show}>
+      <ModalGlobalStyle />
       <ModalContainer width={width} height={height}>
         {children}
       </ModalContainer>

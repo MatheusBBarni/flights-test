@@ -5,10 +5,11 @@ export default createGlobalStyle`
   
   :root {
     --primary-color: #0B598E;
-    --secondary-color: #FFDC2C;
+    --secondary-color: #ffffff;
     --background-color: #121214;
-    --text-color: #ffffff;
-    --ending-color: #ff0000;
+    --warning-color: #FFDC2C;
+    --error-color: #ff0000;
+    --success-color: #00ff00;
     --font: 'Hind', sans-serif;
   }
 
@@ -35,9 +36,9 @@ export const ScrollToTop = styled.button<{ show: boolean }>`
   width: 50px;
   height: 50px;
   border-radius: 25px;
-  background-color: var(--text-color);
+  background-color: var(--secondary-color);
   display: none;
-  border: 1px solid var(--text-color);
+  border: 1px solid var(--secondary-color);
   right: 10px;
   bottom: 10px;
   display: ${props => props.show ? 'block' : 'none'};

@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const Label = styled.label`
   font-size: 14px;
   font-family: var(--font);
-  color: var(--text-color);
+  color: var(--secondary-color);
   margin-bottom: 5px;
 `;
 
