@@ -1,0 +1,1 @@
+export type TimeTypes = 'NO' | 'LAST_5' | 'LAST_1';

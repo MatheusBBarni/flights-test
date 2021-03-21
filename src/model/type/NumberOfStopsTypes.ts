@@ -1,0 +1,1 @@
+export type NumberOfStopsTypes = 'DIRETO' | '1' | '+2';
