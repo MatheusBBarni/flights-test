@@ -12,6 +12,7 @@ import { IFlight } from '../model/IFlight';
 import Input from '../components/Input';
 import FlightCard from '../components/FlightCard';
 import { NumberOfStopsTypes } from '../model/type/NumberOfStopsTypes';
+import DetailsModal from '../components/DetailsModal';
 
 export default function Home({ flights }: HomeProps) {
   const [filter, setFilter] = useState<IFilter>({
@@ -19,6 +20,8 @@ export default function Home({ flights }: HomeProps) {
     numberOfStops: null,
   });
   const [pageFlights, setPageFlights] = useState<IFlight[]>(flights);
+  const [showDetailsModal, setShowDetailsModal] = useState<boolean>(false);
+  const [selectedFlight, setSelectedFlight] = useState<IFlight>();
 
   useEffect(() => {
     setPageFlights(
@@ -60,6 +63,16 @@ export default function Home({ flights }: HomeProps) {
     setFilter({ ...filter, numberOfStops: type });
     return;
   };
+
+  const openDetailsModal = (flight: IFlight) => {
+    setSelectedFlight(flight);
+    setShowDetailsModal(true);
+  };
+  const closeDetailsModal = () => {
+    setSelectedFlight(null);
+    setShowDetailsModal(false);
+  };
+
 
   return (
     <Container>
@@ -109,10 +122,15 @@ export default function Home({ flights }: HomeProps) {
             <NoFlightsFound>Nenhuma viagem foi encontrada com esse filtro.</NoFlightsFound>
           ) : pageFlights
             .map((item, index) => (
-            <FlightCard key={index} flight={item} onDetails={(flight) => console.log(flight)} />
+            <FlightCard key={index} flight={item} onDetails={openDetailsModal} />
           ))}
         </FlightsWrapper>
       </Column>
+      <DetailsModal
+        show={showDetailsModal} 
+        flight={selectedFlight} 
+        onClose={closeDetailsModal} 
+      />
     </Container>
   );
 };
