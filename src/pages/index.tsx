@@ -5,12 +5,18 @@ import { TITLE } from '../config/constants';
 import { Container, Column, FilterWrapper } from '../styles/pages/HomeStyles';
 import Timer from '../components/Timer';
 import { IFilter } from '../model/IFilter';
+import { GetServerSideProps } from 'next';
+import { HomeProps } from '../model/HomeProps';
+import FlightsService from '../services/FlightsService';
+import { IFlight } from '../model/IFlight';
 
-export default function Home() {
+export default function Home({ flights }: HomeProps) {
   const [filter, setFilter] = useState<IFilter>({
     companyName: '',
     numberOfStops: null,
   });
+  const [pageFlights, setPageFlights] = useState<IFlight[]>(flights);
+  
 
   return (
     <Container>
@@ -29,4 +35,20 @@ export default function Home() {
       </Column>
     </Container>
   )
-}
+};
+
+export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
+  const golFlights = await FlightsService.getGolFlights() || []; // this
+  const latamFlights = await FlightsService.getLatamFlights() || [];
+  const azulFlights = await FlightsService.getAzulFlights() || [];
+  
+  return {
+    props: {
+      flights: [
+        ...golFlights,
+        ...latamFlights,
+        ...azulFlights,
+      ],
+    },
+  };
+};
