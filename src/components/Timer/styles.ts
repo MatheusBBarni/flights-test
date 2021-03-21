@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { TimeTypes } from '../../model/type/TimeTypes';
+import { RESPONSIVE } from '../../config/constants';
 
 export const Container = styled.div`
   height: 80px;
@@ -11,6 +12,10 @@ export const Container = styled.div`
   padding: 0 8px;
   margin-bottom: 15px;
   background-color: var(--primary-color);
+
+  @media (max-width: ${RESPONSIVE}) {
+    height: 65px;
+  }
 `;
 
 export const Text = styled.p`

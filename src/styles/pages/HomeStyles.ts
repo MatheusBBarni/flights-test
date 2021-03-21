@@ -10,6 +10,8 @@ export const Container = styled.div`
 
 export const Column = styled.div<{ width: string }>`
   width: ${props => props.width};
+  max-height: 100vh;
+  padding: 10px;
 
   @media (max-width: ${RESPONSIVE}) {
     width: 100%;
@@ -18,13 +20,17 @@ export const Column = styled.div<{ width: string }>`
 `;
 
 export const FilterWrapper = styled.div`
-  min-height: 300px;
+  min-height: 220px;
   border: 1px solid var(--primary-color);
   border-radius: 8px;
   padding: 10px;
   display: flex;
   flex-flow: wrap column;
   background-color: var(--primary-color);
+
+  @media (max-width: ${RESPONSIVE}) {
+    min-height: 150px;
+  }
 `;
 
 export const ClearFilterWrapper = styled.div`
@@ -78,4 +84,15 @@ export const NumberOfStopsCard = styled.button<{ selected: boolean }>`
     background-color: var(--text-color);
     color: var(--primary-color);
   `};
+`;
+
+export const FlightsWrapper = styled.div`
+  width: 100%;
+`;
+
+export const NoFlightsFound = styled.p`
+  text-align: center;
+  font-size: 26px;
+  font-family: var(--font);
+  color: var(--text-color);
 `;

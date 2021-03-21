@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 
 import { TITLE } from '../config/constants';
-import { Container, Column, FilterWrapper, ClearFilterButton, ClearFilterWrapper, NumberOfStopsWrapper, NumberOfStopsCard } from '../styles/pages/HomeStyles';
+import { Container, Column, FilterWrapper, ClearFilterButton, ClearFilterWrapper, NumberOfStopsWrapper, NumberOfStopsCard, FlightsWrapper, ScrollToTop, NoFlightsFound } from '../styles/pages/HomeStyles';
 import Timer from '../components/Timer';
 import { IFilter } from '../model/IFilter';
 import { GetServerSideProps } from 'next';
@@ -10,6 +10,8 @@ import { HomeProps } from '../model/HomeProps';
 import FlightsService from '../services/FlightsService';
 import { IFlight } from '../model/IFlight';
 import Input from '../components/Input';
+import FlightCard from '../components/FlightCard';
+import { NumberOfStopsTypes } from '../model/type/NumberOfStopsTypes';
 
 export default function Home({ flights }: HomeProps) {
   const [filter, setFilter] = useState<IFilter>({
@@ -17,7 +19,47 @@ export default function Home({ flights }: HomeProps) {
     numberOfStops: null,
   });
   const [pageFlights, setPageFlights] = useState<IFlight[]>(flights);
+
+  useEffect(() => {
+    setPageFlights(
+      flights
+        .filter(item => {
+          if (!filter.companyName || filter.companyName === '') {
+            return item;
+          }
+          if (sanitizeString(item.cia.name).includes(sanitizeString(filter.companyName))) {
+            return item;
+          }
+        })
+        .filter(item => {
+          if (!filter.numberOfStops) {
+            return item;
+          }
+          if (filter.numberOfStops === "DIRETO" && item.numberOfStops === 0) {
+            return item;
+          }
+          if (filter.numberOfStops === "1" && item.numberOfStops === 1) {
+            return item;
+          }
+          if (filter.numberOfStops === "+2" && item.numberOfStops >= 2) {
+            return item;
+          }
+        })
+    );
+  }, [filter]);
+
+  const sanitizeString = (text: string) => {
+    return text.trim().toLowerCase();
+  };
   
+  const changeFilter = (type: NumberOfStopsTypes) => {
+    if (type === filter.numberOfStops) {
+      setFilter({ ...filter, numberOfStops: null });
+      return;
+    }
+    setFilter({ ...filter, numberOfStops: type });
+    return;
+  };
 
   return (
     <Container>
@@ -41,29 +83,35 @@ export default function Home({ flights }: HomeProps) {
             placeholder="Digite aqui..."
             onChange={(event) => setFilter({ ...filter, companyName: event.target.value })}
           />
-          {/* 'DIRETO' | '1' | '+2' */}
           <NumberOfStopsWrapper>
             <p>Quantidade de paradas</p>
             <NumberOfStopsCard 
               selected={filter.numberOfStops === 'DIRETO'}
-              onClick={() => setFilter({ ...filter, numberOfStops: 'DIRETO' })}>
+              onClick={() => changeFilter('DIRETO')}>
               Vôo direto
             </NumberOfStopsCard>
             <NumberOfStopsCard 
               selected={filter.numberOfStops === '1'}
-              onClick={() => setFilter({ ...filter, numberOfStops: '1' })}>
+              onClick={() => changeFilter('1')}>
               1 parada
             </NumberOfStopsCard>
             <NumberOfStopsCard 
               selected={filter.numberOfStops === '+2'}
-              onClick={() => setFilter({ ...filter, numberOfStops: '+2' })}>
+              onClick={() => changeFilter('+2')}>
               2+ paradas
             </NumberOfStopsCard>
           </NumberOfStopsWrapper>
         </FilterWrapper>
       </Column>
       <Column width="68%">
-        <p>teste 2</p>
+        <FlightsWrapper>
+          {pageFlights.length === 0 ? (
+            <NoFlightsFound>Nenhuma viagem foi encontrada com esse filtro.</NoFlightsFound>
+          ) : pageFlights
+            .map((item, index) => (
+            <FlightCard key={index} flight={item} onDetails={(flight) => console.log(flight)} />
+          ))}
+        </FlightsWrapper>
       </Column>
     </Container>
   );

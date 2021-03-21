@@ -7,7 +7,7 @@ export interface IFlight {
   originCity: string;
   departureTime: string;
   destinationCity: string;
-  arrivalTime: number;
+  arrivalTime: string;
   numberOfStops: number;
   totalDuration: number;
   priceData: IPrice;

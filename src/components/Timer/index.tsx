@@ -9,42 +9,46 @@ const Timer: React.FC = () => {
     minute: '15',
     seconds: '00',
   });
+  const [isFinished, setIsFinished] = useState<boolean>(false);
 
   useEffect(() => {
     let intervalId;
 
-    intervalId = setInterval(() => {
+    if (!isFinished) {
+      intervalId = setInterval(() => {
 
-      let minute: number = Number(time.minute);
-      let seconds: number = Number(time.seconds);
+        let minute: number = Number(time.minute);
+        let seconds: number = Number(time.seconds);
 
-      const minuteString: string = seconds === 0 ? String(minute-1) : String(minute);
-      const secondsString: string = seconds === 0 ? String(59) : String(seconds-1);
+        const minuteString: string = seconds === 0 ? String(minute-1) : String(minute);
+        const secondsString: string = seconds === 0 ? String(59) : String(seconds-1);
 
-      const realMinute = Number(minuteString);
-      const realSeconds = Number(secondsString);
+        const realMinute = Number(minuteString);
+        const realSeconds = Number(secondsString);
 
-      if (realMinute === 5) {
-        setTimeType('LAST_5');
-      }
-      if (realMinute === 1) {
-        setTimeType('LAST_1');
-      }
-      if (realMinute === 0 && realSeconds === 0) {
-        clearInterval(intervalId);
-        alert('Tempo de busca expirou.');
-        location.reload();
-      }
-      
-      setTime({
-        minute: minuteString,
-        seconds: secondsString,
-      });
+        if (realMinute === 5) {
+          setTimeType('LAST_5');
+        }
+        if (realMinute === 1) {
+          setTimeType('LAST_1');
+        }
+        if (realMinute === 0 && realSeconds === 0) {
+          clearInterval(intervalId);
+          setIsFinished(true);
+          alert('Tempo de busca expirou.');
+          location.reload();
+        }
+        
+        setTime({
+          minute: minuteString,
+          seconds: secondsString,
+        });
 
-    }, 1000);
+      }, 1000);
+    }
 
     return () => clearInterval(intervalId);
-  }, [time]);
+  }, [time, isFinished]);
 
   return (
     <Container>
