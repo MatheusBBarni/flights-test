@@ -31,6 +31,7 @@ const Timer: React.FC = () => {
         setTimeType('LAST_1');
       }
       if (realMinute === 0 && realSeconds === 0) {
+        clearInterval(intervalId);
         alert('Tempo de busca expirou.');
         location.reload();
       }

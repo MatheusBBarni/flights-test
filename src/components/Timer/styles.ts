@@ -10,12 +10,13 @@ export const Container = styled.div`
   align-items: center;
   padding: 0 8px;
   margin-bottom: 15px;
+  background-color: var(--primary-color);
 `;
 
 export const Text = styled.p`
   font-size: 16px;
   font-family: var(--font);
-  color: var(--primary-color);
+  color: var(--text-color);
 `;
 
 export const Countdown = styled.div<{ timeType: TimeTypes }>`
@@ -27,7 +28,7 @@ export const Countdown = styled.div<{ timeType: TimeTypes }>`
     font-family: var(--font);
 
     ${props => props.timeType === 'NO' && css`
-      color: var(--primary-color);
+      color: var(--text-color);
     `};
     ${props => props.timeType === 'LAST_5' && css`
       color: var(--secondary-color);
