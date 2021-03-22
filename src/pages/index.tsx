@@ -83,7 +83,7 @@ export default function Home({ flights }: HomeProps) {
 
 
   return (
-    <Container>
+    <Container data-testid="home">
       <Head>
         <title>{TITLE}</title>
         <link rel="icon" href="/favicon.png" />
@@ -92,7 +92,7 @@ export default function Home({ flights }: HomeProps) {
 
       <Column width="26%">
         <Timer minutes="1" seconds="00" />
-        <FilterWrapper>
+        <FilterWrapper data-testid="filter">
           <ClearFilterWrapper>
             <ClearFilterButton onClick={() => setFilter({ companyName: '', numberOfStops: null })}>
               Limpar filtros
