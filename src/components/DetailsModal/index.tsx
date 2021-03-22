@@ -34,7 +34,7 @@ const DetailsModal: React.FC<DetailsModalProps> = ({
         <CloseModalButton onClick={onClose}>
           <FaTimes color="var(--secondary-color)" size="30px" />
         </CloseModalButton>
-        <Container>
+        <Container data-testid="details-modal">
           <Title>Detalhes do Vôo - {flightNumber}</Title>
           <PriceWrapper>
             <Price>
@@ -60,7 +60,7 @@ const DetailsModal: React.FC<DetailsModalProps> = ({
             <p className="text">Valor total:</p>
             <p className="value">{moneyMask(total)}</p>
           </TotalValue>
-          <BuyButton onClick={() => setShowSuccessModal(true)}>
+          <BuyButton onClick={() => setShowSuccessModal(true)} data-testid="buy-button">
             Comprar
           </BuyButton>
         </Container>

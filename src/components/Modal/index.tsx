@@ -10,7 +10,7 @@ export interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ show, children, width, height }) => {
   return show && (
-    <ModalBackground show={show}>
+    <ModalBackground show={show} data-testid="modal">
       <ModalGlobalStyle />
       <ModalContainer width={width} height={height}>
         {children}

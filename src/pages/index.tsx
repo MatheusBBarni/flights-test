@@ -91,7 +91,7 @@ export default function Home({ flights }: HomeProps) {
       </Head>
 
       <Column width="26%">
-        <Timer />
+        <Timer minutes="1" seconds="00" />
         <FilterWrapper>
           <ClearFilterWrapper>
             <ClearFilterButton onClick={() => setFilter({ companyName: '', numberOfStops: null })}>

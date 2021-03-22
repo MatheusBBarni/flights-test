@@ -1,12 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
-import { format, parseISO } from 'date-fns';
 import { FaPlaneDeparture, FaPlaneArrival } from 'react-icons/fa';
 
 import { Container, Column, DetailsButton } from './styles';
 import { IFlight } from '../../model/IFlight';
 import { ICompany } from '../../model/ICompany';
 import { LATAM_CODE, GOL_CODE, AZUL_CODE } from '../../config/constants';
+import formatDate from '../../util/formatDate';
 
 const FlightCard: React.FC<{ flight: IFlight; onDetails: (flight: IFlight) => void }> = ({
   onDetails,
@@ -29,12 +29,8 @@ const FlightCard: React.FC<{ flight: IFlight; onDetails: (flight: IFlight) => vo
     return image;
   };
 
-  const formatDate = (date: string) => {
-    return format(parseISO(date), 'dd/MM/yyyy HH:mm')
-  };
-
   return (
-    <Container>
+    <Container data-testid="flight-card">
       <Column width="15%">
         <Image
           width="75" 

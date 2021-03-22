@@ -4,11 +4,14 @@ import { Container, Text, Countdown } from './styles';
 import { TimeTypes } from '../../model/type/TimeTypes';
 import AlertModal from '../AlertModal';
 
-const Timer: React.FC = () => {
+const Timer: React.FC<{ minutes?: string; seconds?: string }> = ({
+  minutes = '15',
+  seconds = '00',
+}) => {
   const [timeType, setTimeType] = useState<TimeTypes>('NO');
   const [time, setTime] = useState<{ minute: string; seconds: string }>({
-    minute: '15',
-    seconds: '00',
+    minute: minutes,
+    seconds: seconds,
   });
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [showWarningModal, setShowWarningModal] = useState<boolean>(false);
@@ -55,7 +58,7 @@ const Timer: React.FC = () => {
     <Container>
       <Text>Pesquisa válida por:</Text>
       <Countdown timeType={timeType}>
-        <p>
+        <p data-testid="countdown-value">
           {time.minute.length === 1 ? `0${time.minute}` : time.minute}:{time.seconds.length === 1 ? `0${time.seconds}` : time.seconds}
         </p>
       </Countdown>

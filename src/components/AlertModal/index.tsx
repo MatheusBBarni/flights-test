@@ -20,7 +20,7 @@ const AlertModal: React.FC<AlertModalProps> = ({
   return (
     <Modal {...props} width="400px" height="320px">
       <Container>
-        <Title>{title}</Title>
+        <Title data-testid="alert-title">{title}</Title>
         <TypeIndicator type={type}>
           {type === 'ERROR' && <FaTimes />}
           {type === 'SUCCESS' && <FaCheck />}
