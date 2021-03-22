@@ -8,7 +8,7 @@
 ## How to run?
 1. We need to install all dependencies: `yarn install`.
 2. Generate a build: `yarn build`.
-3. Wait for the build to end and run the project: `yarn start`;
+3. Wait for the build to end and run the project: `yarn start`.
 
 ## Commands
 - Dev: `yarn dev` or `npm run dev`.
