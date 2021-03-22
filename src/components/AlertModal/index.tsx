@@ -22,9 +22,9 @@ const AlertModal: React.FC<AlertModalProps> = ({
       <Container>
         <Title data-testid="alert-title">{title}</Title>
         <TypeIndicator type={type}>
-          {type === 'ERROR' && <FaTimes />}
-          {type === 'SUCCESS' && <FaCheck />}
-          {type === 'WARNING' && <FaExclamationTriangle />}
+          {type === 'ERROR' && <FaTimes data-testid="type-error" />}
+          {type === 'SUCCESS' && <FaCheck data-testid="type-success" />}
+          {type === 'WARNING' && <FaExclamationTriangle data-testid="type-warning" />}
         </TypeIndicator>
         <CloseModalButton onClick={onClose}>
           Fechar

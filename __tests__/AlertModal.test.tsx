@@ -3,6 +3,10 @@ import AlertModal from "../src/components/AlertModal";
 
 describe("AlertModal", () => {
   const alertTitleId = 'alert-title';
+  const typeError = 'type-error';
+  const typeSuccess = 'type-success';
+  const typeWarning = 'type-warning';
+
   it("Should render type 'SUCCESS' without crashing", () => {
     render(
       <AlertModal
@@ -12,7 +16,7 @@ describe("AlertModal", () => {
         type="SUCCESS"
       />
     );
-    expect(screen.getByTestId(alertTitleId)).toBeInTheDocument();
+    expect(screen.getByTestId(typeSuccess)).toBeInTheDocument();
   });
   it("Should render type 'ERROR' without crashing", () => {
     render(
@@ -23,7 +27,7 @@ describe("AlertModal", () => {
         type="ERROR"
       />
     );
-    expect(screen.getByTestId(alertTitleId)).toBeInTheDocument();
+    expect(screen.getByTestId(typeError)).toBeInTheDocument();
   });
   it("Should render type 'WARNING' without crashing", () => {
     render(
@@ -34,6 +38,6 @@ describe("AlertModal", () => {
         type="WARNING"
       />
     );
-    expect(screen.getByTestId(alertTitleId)).toBeInTheDocument();
+    expect(screen.getByTestId(typeWarning)).toBeInTheDocument();
   });
 });
