@@ -90,6 +90,14 @@ export const FlightsWrapper = styled.div`
   width: 100%;
 `;
 
+export const FlightsColumnTitle = styled.h1`
+  text-align: start;
+  font-size: 32px;
+  font-weight: bold;
+  font-family: var(--font);
+  color: var(--secondary-color);
+  margin-bottom: 20px;
+`;
 export const NoFlightsFound = styled.p`
   text-align: center;
   font-size: 26px;

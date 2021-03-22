@@ -12,7 +12,8 @@ import {
   NumberOfStopsWrapper, 
   NumberOfStopsCard, 
   FlightsWrapper, 
-  NoFlightsFound 
+  NoFlightsFound, 
+  FlightsColumnTitle
 } from '../styles/pages/HomeStyles';
 import Timer from '../components/Timer';
 import { IFilter } from '../model/IFilter';
@@ -91,7 +92,7 @@ export default function Home({ flights }: HomeProps) {
       </Head>
 
       <Column width="26%">
-        <Timer minutes="1" seconds="00" />
+        <Timer />
         <FilterWrapper data-testid="filter">
           <ClearFilterWrapper>
             <ClearFilterButton onClick={() => setFilter({ companyName: '', numberOfStops: null })}>
@@ -125,6 +126,7 @@ export default function Home({ flights }: HomeProps) {
         </FilterWrapper>
       </Column>
       <Column width="68%">
+        <FlightsColumnTitle>Vôos encontrados</FlightsColumnTitle>
         <FlightsWrapper>
           {pageFlights.length === 0 ? (
             <NoFlightsFound>Nenhuma viagem foi encontrada com esse filtro.</NoFlightsFound>
